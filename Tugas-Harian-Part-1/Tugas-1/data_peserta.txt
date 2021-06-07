@@ -1,0 +1,6 @@
+Data Peserta Sanbercode Bootcamp ReactJS
+1. Nama: Jonathan Adithya
+2. Email: jo.adithya391@gmail.com
+3. Sistem Operasi yang digunakan: MacOS
+4. Akun Gitlab/Github: @jo-adithya
+5. Akun Telegram: Jonathan Adithya
