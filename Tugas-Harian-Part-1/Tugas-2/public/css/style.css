@@ -1,0 +1,26 @@
+body {
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+.label {
+    width: 9rem;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+table tr td{
+    padding: .4rem 0;
+}
+
+input[type="radio"] {
+    margin-right: .6rem;
+    vertical-align: middle;
+}
+
+label[for="laki"], label[for="perempuan"] {
+    vertical-align: middle;
+}

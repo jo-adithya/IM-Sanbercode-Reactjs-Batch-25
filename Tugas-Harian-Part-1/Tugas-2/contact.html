@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="public/css/style.css" />
+    <title>Contact</title>
+  </head>
+  <body>
+    <h1>Hubungi Kami</h1>
+    <p>
+      <b>Kantor:</b> di jalan belum jadi<br />
+      <b>Nomor Telepon:</b> 08XX-XXXX-XXXX<br />
+      <b>Email:</b> email@contoh.com<br />
+    </p>
+    <h1>Kirimkan Pesan</h1>
+    <form>
+      <table>
+        <tr>
+          <td class="label"><label for="nama">Nama</label></td>
+          <td><input type="text" name="nama" id="nama" /></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="email">Email</label></td>
+          <td><input type="email" name="email" id="email" /></td>
+        </tr>
+        <tr>
+          <td class="label"><label>Jenis Kelamin</label></td>
+          <td class="radio">
+            <div>
+              <input
+                type="radio"
+                name="gender"
+                id="laki"
+                value="laki"
+                checked
+              /><label for="laki">Laki-laki</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="gender"
+                id="perempuan"
+                value="perempuan"
+              /><label for="perempuan">Perempuan</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="label"><label for="pesan">Pesan Anda</label></td>
+          <td>
+            <textarea name="pesan" id="pesan" cols="40" rows="5"></textarea>
+          </td>
+        </tr>
+      </table>
+      <button type="submit">Kirim</button>
+    </form>
+    <br />
+    <a href="index.html">Kembali Ke Index</a>
+  </body>
+</html>
