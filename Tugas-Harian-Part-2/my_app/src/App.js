@@ -1,50 +1,23 @@
 /* cSpell:disable */
 
-import logo from "./logo.svg";
-import "./App.css";
+import logo from './logo.svg';
+import FormBuah from './Tugas-9/FormBuah';
+import TabelBuah from './Tugas-10/TabelBuah';
+import './App.css';
 
 function App() {
+  let dataBuah = [
+    { buah: 'Semangka', harga: 10000, berat: 1 },
+    { buah: 'Anggur', harga: 40000, berat: 0.5 },
+    { buah: 'Strawberry', harga: 30000, berat: 0.4 },
+    { buah: 'Jeruk', harga: 30000, berat: 1 },
+    { buah: 'Mangga', harga: 30000, berat: 0.5 },
+  ]
+
   return (
     <div className="App">
-      <h1>Form Pembelian Buah</h1>
-      <form>
-        <table>
-          <tr>
-            <td className="form-label">
-              <label htmlFor="nama">Nama Pelanggan</label>
-            </td>
-            <td className="form-control">
-              <input type="text" name="nama" id="nama" />
-            </td>
-          </tr>
-          <tr>
-            <td className="form-label">Daftar Item</td>
-            <td className="form-control">
-              <label>
-                <input type="checkbox" name="" value="Semangka" />
-                Semangka
-              </label>
-              <label>
-                <input type="checkbox" name="" value="Jeruk" />
-                Jeruk
-              </label>
-              <label>
-                <input type="checkbox" name="" value="Nanas" />
-                Nanas
-              </label>
-              <label>
-                <input type="checkbox" name="" value="Salak" />
-                Salak
-              </label>
-              <label>
-                <input type="checkbox" name="" value="Anggur" />
-                Anggur
-              </label>
-            </td>
-          </tr>
-        </table>
-        <button type="submit">Kirim</button>
-      </form>
+      <TabelBuah dataBuah={dataBuah} />
+      <FormBuah dataBuah={dataBuah} />
     </div>
   );
 }

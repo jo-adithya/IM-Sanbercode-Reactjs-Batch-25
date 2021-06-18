@@ -1,0 +1,25 @@
+form td {
+    text-align: left;
+    vertical-align: bottom;
+    padding: 0 40px 20px 0;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+}
+
+label > input {
+    margin-right: 10px;
+    vertical-align: top;
+}
+
+button {
+    border: solid 2px;
+    border-radius: 15px;
+    background-color: white;
+}

@@ -1,0 +1,26 @@
+/* cSpell:disable */
+
+.tabel-buah {
+    margin: auto;
+    border: solid 1px;
+}
+
+.tabel-buah thead {
+    background-color: #aaa;
+}
+
+.tabel-buah tbody {
+    background-color: #ff7f50;
+}
+
+.tabel-buah__nama {
+    width: 340px;
+}
+
+.tabel-buah__harga, .tabel-buah__berat {
+    width: 215px;
+}
+
+.tabel-buah__berat::after {
+    content: " kg";
+}
