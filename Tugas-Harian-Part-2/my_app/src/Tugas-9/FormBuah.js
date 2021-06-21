@@ -6,7 +6,7 @@ import './FormBuah.css'
 class FormBuah extends React.Component {
   render() {
     return (
-      <div>
+      <div className="form-container">
         <h1>Form Pembelian Buah</h1>
         <form>
           <table>
