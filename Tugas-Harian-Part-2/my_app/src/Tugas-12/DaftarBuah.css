@@ -1,0 +1,35 @@
+table.daftar-buah {
+  border-collapse: collapse;
+  margin: auto;
+  width: 90%;
+  max-width: 600px;
+}
+
+table.daftar-buah th, table.daftar-buah td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.daftar-buah__berat::after {
+  content: ' kg';
+}
+
+.form-daftar-buah {
+  margin: auto;
+  width: 90%;
+  max-width: 600px;
+  border: solid 1px #ddd;
+}
+
+.form-daftar-buah input {
+  float: right;
+}
+
+.form-daftar-buah label {
+  font-weight: bold;
+}
+
+.form-daftar-buah p {
+  margin: 20px;
+}
