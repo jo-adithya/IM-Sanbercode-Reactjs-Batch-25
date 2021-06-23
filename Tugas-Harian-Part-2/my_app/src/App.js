@@ -3,7 +3,8 @@
 // import FormBuah from './Tugas-9/FormBuah';
 // import TabelBuah from './Tugas-10/TabelBuah';
 // import TimerContainer from './Tugas-11/TimerContainer';
-import DaftarBuah from './Tugas-12/DaftarBuah';
+// import DaftarBuah from './Tugas-12/DaftarBuah';
+import DaftarNilai from './Tugas-13/DaftarNilai';
 import './App.css';
 
 function App() {
@@ -21,8 +22,9 @@ function App() {
       <TabelBuah dataBuah={dataBuah} />
       <div className="timer" id="timer">
         <TimerContainer start={100} />
-      </div> */}
-      <DaftarBuah dataBuah={dataBuah} />
+      </div>
+      <DaftarBuah dataBuah={dataBuah} /> */}
+      <DaftarNilai />
     </div>
   );
 }
