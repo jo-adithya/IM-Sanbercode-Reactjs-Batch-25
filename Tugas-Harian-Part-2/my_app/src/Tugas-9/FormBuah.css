@@ -1,3 +1,7 @@
+h1 {
+  margin: 0 0 25px 0;
+}
+
 form td {
     text-align: left;
     vertical-align: bottom;
@@ -5,11 +9,11 @@ form td {
 }
 
 .form-container {
-  max-width: 750px;
+  max-width: 500px;
   border-radius: 20px;
   border: 2px solid;
   margin: auto;
-  padding: 20px;
+  padding: 25px;
 }
 
 .form-label {
@@ -26,8 +30,9 @@ label > input {
     vertical-align: top;
 }
 
-button {
+form button {
     border: solid 2px;
     border-radius: 15px;
     background-color: white;
+    cursor: pointer;
 }

@@ -5,7 +5,8 @@
 // import TimerContainer from './Tugas-11/TimerContainer';
 // import DaftarBuah from './Tugas-12/DaftarBuah';
 // import DaftarNilai from './Tugas-13/DaftarNilai';
-import Mahasiswa from './Tugas-14/Mahasiswa';
+// import Mahasiswa from './Tugas-14/Mahasiswa';
+import Routes from './Tugas-15/Routes';
 import './App.css';
 
 function App() {
@@ -24,8 +25,9 @@ function App() {
       <div className="timer" id="timer">
         <TimerContainer start={100} />
       </div>
-      <DaftarBuah dataBuah={dataBuah} /> */}
-      <Mahasiswa />
+      <DaftarBuah dataBuah={dataBuah} />
+      <Mahasiswa /> */}
+      <Routes />
     </div>
   );
 }

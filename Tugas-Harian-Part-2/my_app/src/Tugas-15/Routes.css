@@ -1,0 +1,26 @@
+nav ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0 0 30px 0;
+  padding: 0;
+  width: 100vw;
+}
+
+nav ul li {
+  padding: 1rem 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav ul li span {
+  padding: 1rem 1.3rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+nav ul li span:hover {
+  background-color: #aaa;
+}

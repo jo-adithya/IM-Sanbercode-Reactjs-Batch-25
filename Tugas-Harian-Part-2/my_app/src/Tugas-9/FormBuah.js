@@ -4,6 +4,10 @@ import React from 'react';
 import './FormBuah.css'
 
 class FormBuah extends React.Component {
+  constructor() {
+    super();
+    this.dataBuah = ['Semangka', 'Jeruk', 'Nanas', 'Salak', 'Anggur'];
+  }
   render() {
     return (
       <div className="form-container">
@@ -21,11 +25,11 @@ class FormBuah extends React.Component {
             <tr>
               <td className="form-label">Daftar Item</td>
               <td className="form-control">
-                {this.props.dataBuah.map((el) => {
+                {this.dataBuah.map((el) => {
                   return (
                     <label>
-                      <input type="checkbox" id={el.buah} />
-                      {el.buah}
+                      <input type="checkbox" id={el} />
+                      {el}
                     </label>
                   );
                 })}

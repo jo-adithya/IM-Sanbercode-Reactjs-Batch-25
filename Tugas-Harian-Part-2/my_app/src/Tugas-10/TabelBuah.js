@@ -20,9 +20,9 @@ class TabelBuah extends React.Component {
             {this.props.dataBuah.map(el => {
               return(
                 <tr>
-                  <td className="tabel-buah__nama">{el.buah}</td>
+                  <td className="tabel-buah__nama">{el.nama}</td>
                   <td className="tabel-buah__harga">{el.harga}</td>
-                  <td className="tabel-buah__berat">{el.berat}</td>
+                  <td className="tabel-buah__berat">{el.berat / 1000}</td>
                 </tr>
               )
             })}

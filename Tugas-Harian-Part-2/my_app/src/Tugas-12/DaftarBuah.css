@@ -2,7 +2,7 @@ table.daftar-buah {
   border-collapse: collapse;
   margin: auto;
   width: 90%;
-  max-width: 600px;
+  max-width: 800px;
 }
 
 table.daftar-buah th, table.daftar-buah td {
@@ -32,4 +32,8 @@ table.daftar-buah th, table.daftar-buah td {
 
 .form-daftar-buah p {
   margin: 20px;
+}
+
+input[type="submit"], button {
+  cursor: pointer;
 }

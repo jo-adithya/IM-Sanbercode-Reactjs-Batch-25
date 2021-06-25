@@ -1,6 +1,7 @@
 /* cSpell:disable */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getDatabase } from '../helper';
 
 import '../Tugas-12/DaftarBuah.css';
 const BASE_URL = 'http://backendexample.sanbercloud.com/api/student-scores';
@@ -11,23 +12,11 @@ const DaftarNilai = () => {
   const [inputMataKuliah, setInputMataKuliah] = useState('');
   const [inputNilai, setInputNilai] = useState('');
   const [editId, setEditId] = useState('');
+  const [message, setMessage] = useState({ status: null, message: '' });
 
   useEffect(() => {
-    let fetchData = async () => {
-      try {
-        let response = await axios.get(BASE_URL);
-        setMahasiswa(
-          response.data.map((x) => {
-            return { id: x.id, name: x.name, course: x.course, score: x.score };
-          })
-        );
-      } catch (error) {
-        console.log(error.message)
-      }
-    };
-
-    fetchData();
-  });
+    getDatabase(setMahasiswa, setMessage);
+  }, [])
 
   const handleInputNama = (e) => {
     setInputNama(e.target.value);
@@ -45,49 +34,57 @@ const DaftarNilai = () => {
     setInputMataKuliah(data.course);
     setInputNilai(data.score);
   };
-  const handleDelete = (e) => {
-    axios
-      .delete(`${BASE_URL}/${e.target.id}`)
-      .then((res) => {
-        let newMahasiswa = mahasiswa.filter((x) => x.id !== parseInt(e.target.id));
-        setMahasiswa(newMahasiswa);
-      })
-      .catch((err) => {
-        console.log(err.message);
+  const handleDelete = async (e) => {
+    try {
+      await axios.delete(`${BASE_URL}/${e.target.id}`);
+      setMessage({
+        status: 'success',
+        message: `Successfully deleted data with id ${e.target.id}`,
       });
+      getDatabase(setMahasiswa, setMessage);
+    } catch (error) {
+      setMessage({
+        status: 'error',
+        message: `${error.message}  |  Failed to delete data with id ${e.target.id}, please try again later...`,
+      })
+    }
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let inputData = {
-      id: editId,
       name: inputNama,
       course: inputMataKuliah,
       score: inputNilai,
     };
 
     if (editId !== '') {
-      axios
-        .put(`${BASE_URL}/${editId}`, inputData)
-        .then(() => {
-          let data = mahasiswa;
-          data.filter((x) => x.id === editId)[0] = inputData;
-          console.log(data);
-          setMahasiswa(data);
-        })
-        .catch((err) => {
-          console.log(err.message);
+      try {
+        await axios.put(`${BASE_URL}/${editId}`, inputData);
+        setMessage({
+          status: 'success',
+          message: `Successfully edited data with id ${editId}`,
         });
+        getDatabase(setMahasiswa, setMessage);
+      } catch (error) {
+        setMessage({
+          status: 'error',
+          message: `${error.message}  |  Failed to edit data with id ${editId}, please try again later...`,
+        })
+      }
     } else {
-      axios
-        .post(`${BASE_URL}`, inputData)
-        .then(() => {
-          setMahasiswa((prevMahasiswa) => {
-            return [...prevMahasiswa, inputData];
-          });
-        })
-        .catch((err) => {
-          console.log(err.message);
+      try {
+        let id = (await axios.post(`${BASE_URL}`, inputData)).data.id;
+        setMessage({
+          status: 'success',
+          message: `Successfully added data with id ${id}`,
         });
+        getDatabase(setMahasiswa, setMessage);
+      } catch (error) {
+        setMessage({
+          status: 'error',
+          message: `${error.message}  |  Failed to add data, please try again later...`,
+        })
+      }
     }
 
     setInputNama('');
@@ -98,6 +95,15 @@ const DaftarNilai = () => {
 
   return (
     <>
+      {(message.status !== null) ? ((message.status === 'success') ? (
+        <div style={{width: '90%', padding: '1rem', margin: '0 auto 30px auto', textAlign: 'center', color: '#164ba0', borderRadius: '5px', border: '1px solid #b6d4fd', backgroundColor: '#cfe2fe'}}>
+          {message.message}
+        </div>
+      ) : (
+        <div style={{width: '90%', padding: '1rem', margin: '0 auto 30px auto', textAlign: 'center', color: '#8a2b34', borderRadius: '5px', border: '1px solid #f5c2c7', backgroundColor: '#fbd3db'}}>
+          {message.message}
+        </div>
+      )) : null}
       {/* Tabel */}
       <h1>Daftar Nilai Mahasiswa</h1>
       <table className="daftar-buah">
@@ -143,7 +149,7 @@ const DaftarNilai = () => {
           })}
         </tbody>
       </table>
-
+      <br /> <br />
       {/* Form */}
       <h1>Form Nilai Mahasiswa</h1>
       <form onSubmit={handleSubmit} className="form-daftar-buah">

@@ -1,30 +1,26 @@
 /* cSpell:disable */
 import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import { getDatabase } from '../helper';
 
 export const NilaiContext = createContext();
 
 const NilaiProvider = (props) => {
   const [mahasiswa, setMahasiswa] = useState([]);
-  const [editId, setEditId] = useState([false, '']);
+  const [editId, setEditId] = useState('');
+  const [message, setMessage] = useState({ status: null, message: '' });
 
   useEffect(() => {
-    axios
-      .get('http://backendexample.sanbercloud.com/api/student-scores')
-      .then((res) => {
-        setMahasiswa(
-          res.data.map((x) => {
-            return { id: x.id, name: x.name, course: x.course, score: x.score };
-          })
-        );
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  });
+    getDatabase(setMahasiswa, setMessage);
+  }, []);
 
   return (
-    <NilaiContext.Provider value={[[mahasiswa, setMahasiswa], [editId, setEditId]]}>
+    <NilaiContext.Provider
+      value={[
+        [mahasiswa, setMahasiswa],
+        [editId, setEditId],
+        [message, setMessage]
+      ]}
+    >
       {props.children}
     </NilaiContext.Provider>
   );

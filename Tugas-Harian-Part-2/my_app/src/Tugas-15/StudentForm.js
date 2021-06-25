@@ -1,30 +1,34 @@
 /* cSpell:disable */
 import React, { useContext, useState, useEffect } from 'react';
-import { NilaiContext } from './NilaiContext';
+import { NilaiContext } from '../Tugas-14/NilaiContext';
 import { getDatabase } from '../helper';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import '../Tugas-12/DaftarBuah.css';
 const BASE_URL = 'http://backendexample.sanbercloud.com/api/student-scores';
 
-const FormNilai = () => {
-  const [
-    [mahasiswa, setMahasiswa],
-    [editId, setEditId],
-    [, setMessage],
-  ] = useContext(NilaiContext);
+const StudentForm = () => {
+  const [[mahasiswa, setMahasiswa], , [, setMessage]] =
+    useContext(NilaiContext);
   const [nama, setNama] = useState('');
   const [mataKuliah, setMataKuliah] = useState('');
   const [nilai, setNilai] = useState('');
+  const { id } = useParams();
+  let history = useHistory();
 
   useEffect(() => {
-    if (editId !== '') {
-      let data = mahasiswa.filter((x) => x.id === editId)[0];
+    if (id !== undefined) {
+      let data = mahasiswa.filter((x) => x.id === parseInt(id))[0];
+      if (data === undefined) {
+        history.push('/tugas15/create');
+        return;
+      }
       setNama(data.name);
       setMataKuliah(data.course);
       setNilai(data.score);
     }
-  }, [editId, mahasiswa])
+  }, [id, mahasiswa, history]);
 
   const handleInputNama = (e) => {
     setNama(e.target.value);
@@ -43,40 +47,40 @@ const FormNilai = () => {
       score: nilai,
     };
 
-    if (editId !== '') {
+    if (id !== undefined) {
       try {
-        await axios.put(`${BASE_URL}/${editId}`, inputData);
+        await axios.put(`${BASE_URL}/${id}`, inputData);
         setMessage({
           status: 'success',
-          message: `Successfully edited data with id ${editId}`,
+          message: `Successfully edited data with id ${id}`,
         });
         getDatabase(setMahasiswa, setMessage);
       } catch (error) {
         setMessage({
           status: 'error',
-          message: `${error.message}  |  Failed to edit data with id ${editId}, please try again later...`,
-        })
+          message: `${error.message}  |  Failed to edit data with id ${id}, please try again later...`,
+        });
       }
     } else {
       try {
-        let id = (await axios.post(`${BASE_URL}`, inputData)).data.id;
+        let newId = (await axios.post(`${BASE_URL}`, inputData)).data.id;
         setMessage({
           status: 'success',
-          message: `Successfully added data with id ${id}`,
+          message: `Successfully added data with id ${newId}`,
         });
         getDatabase(setMahasiswa, setMessage);
       } catch (error) {
         setMessage({
           status: 'error',
           message: `${error.message}  |  Failed to add data, please try again later...`,
-        })
+        });
       }
     }
 
     setNama('');
     setMataKuliah('');
     setNilai('');
-    setEditId('');
+    history.push('/tugas15');
   };
 
   return (
@@ -122,9 +126,12 @@ const FormNilai = () => {
           &nbsp;
           <input type="submit" value="Submit" />
         </p>
+        <p>
+          <Link to="/tugas15">Kembali Ke Tabel</Link>
+        </p>
       </form>
     </>
   );
 };
 
-export default FormNilai;
+export default StudentForm;

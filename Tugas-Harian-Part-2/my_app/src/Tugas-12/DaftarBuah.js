@@ -7,7 +7,13 @@ export default class DaftarBuah extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataBuah: [],
+      dataBuah: [
+        { nama: 'Nanas', hargaTotal: 100000, beratTotal: 4000 },
+        { nama: 'Manggis', hargaTotal: 350000, beratTotal: 10000 },
+        { nama: 'Nangka', hargaTotal: 90000, beratTotal: 2000 },
+        { nama: 'Durian', hargaTotal: 400000, beratTotal: 5000 },
+        { nama: 'Strawberry', hargaTotal: 120000, beratTotal: 6000 },
+      ],
       inputNama: '',
       inputHarga: '',
       inputBerat: '',
@@ -20,9 +26,6 @@ export default class DaftarBuah extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-  }
-  componentDidMount() {
-    this.setState({ dataBuah: this.props.dataBuah });
   }
   handleInputNama(e) {
     this.setState({ inputNama: e.target.value });
@@ -38,7 +41,7 @@ export default class DaftarBuah extends React.Component {
     let dataBuah = [];
 
     if (this.state.editId !== '') {
-      dataBuah = [...this.state.dataBuah]
+      dataBuah = [...this.state.dataBuah];
       dataBuah[this.state.editId] = {
         nama: this.state.inputNama,
         hargaTotal: this.state.inputHarga,
@@ -80,7 +83,6 @@ export default class DaftarBuah extends React.Component {
     return (
       <>
         <h1>Daftar Harga Buah</h1>
-
         {/* Tabel Harga */}
         <table className="daftar-buah">
           <thead>
@@ -123,7 +125,7 @@ export default class DaftarBuah extends React.Component {
             })}
           </tbody>
         </table>
-
+        <br /> <br />
         {/* Form */}
         <h1>Form Daftar Harga Buah</h1>
         <form onSubmit={this.handleSubmit} className="form-daftar-buah">
