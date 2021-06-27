@@ -1,0 +1,44 @@
+h1 {
+  text-align: center;
+}
+
+.mobile-apps {
+  border-collapse: collapse;
+  margin: auto;
+  width: 90%;
+  max-width: 800px;
+}
+
+.mobile-apps th, .mobile-apps td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+input[type="submit"], button {
+  cursor: pointer;
+}
+
+.mobile-form {
+  width: 55%;
+  margin: auto;
+}
+
+.form-control {
+  display: flex;
+  margin: 20px auto;
+  vertical-align: bottom;
+}
+
+.form-control label {
+  font-weight: bold;
+  width: 150px;
+}
+
+.number {
+  width: 150px;
+}
+
+.end {
+  align-self: flex-end;
+}
