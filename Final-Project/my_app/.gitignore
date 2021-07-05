@@ -1,5 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-.DS_Store
+
 # dependencies
 /node_modules
 /.pnp
@@ -17,6 +17,9 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env
+
+.netlify
 
 npm-debug.log*
 yarn-debug.log*
